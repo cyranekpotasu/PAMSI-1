@@ -2,7 +2,7 @@
 // Created by cyran on 03.03.18.
 //
 
-#include "Stub.h"
+#include "../lib/Stub.h"
 
 Stub::~Stub() {
     delete[] data;

@@ -2,8 +2,8 @@
 #include <chrono>
 #include <vector>
 #include <numeric>
-#include "IRunnable.h"
-#include "Stub.h"
+#include "lib/IRunnable.h"
+#include "lib/Stub.h"
 
 using namespace std;
 using namespace std::chrono;
