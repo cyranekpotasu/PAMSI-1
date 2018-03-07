@@ -2,6 +2,7 @@
 #include <chrono>
 #include <vector>
 #include <numeric>
+#include <fstream>
 #include "lib/IRunnable.h"
 #include "lib/Stub.h"
 
@@ -22,12 +23,14 @@ auto measure_time(IRunnable& prog) {
 }
 
 int main() {
+    ofstream data_file {"../data.txt"};
     vector<unsigned> sizes {250, 500, 1000, 2500,
                        5000, 7500, 10000, 15000};
     Stub stub;
     for(const auto& size: sizes) {
         stub.prepare(size);
-        cout << measure_time(stub) << "us" << endl;
+        data_file << size << " " << measure_time(stub) << endl;
     }
+    data_file.close();
     return 0;
 }
