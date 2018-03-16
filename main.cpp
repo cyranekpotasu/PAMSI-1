@@ -5,6 +5,7 @@
 #include <fstream>
 #include "lib/IRunnable.h"
 #include "lib/Stub.h"
+#include "lib/sorting.h"
 
 using namespace std;
 using namespace std::chrono;
