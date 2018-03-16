@@ -12,6 +12,7 @@ def draw(x, y):
     plt.grid(True)
     plt.show()
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Plot data from file')
     parser.add_argument('file', help='file with data to plot')
