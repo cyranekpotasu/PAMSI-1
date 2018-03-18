@@ -1,16 +1,19 @@
 #!/usr/bin/python
 
 import argparse
+
 import matplotlib.pyplot as plt
+import numpy as np
 
 
-def draw(x, y):
+def draw(x, y, log_scale):
     plt.figure(1)
     plt.plot(x, y)
     plt.xlabel('Data size')
     plt.ylabel('Execution time [s]')
-    plt.xscale('log')
-    plt.yscale('log')
+    if log_scale:
+        plt.xscale('log')
+        plt.yscale('log')
     plt.title('Time complexity plot')
     plt.grid(True)
     plt.show()
@@ -19,15 +22,18 @@ def draw(x, y):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Plot data from file')
     parser.add_argument('file', help='file with data to plot')
+    parser.add_argument('--csv', '-c',
+                        help='use csv format (default - space separated)',
+                        action='store_true')
+    parser.add_argument('--log', '-l', help='use logarithmic scale',
+                        action='store_true')
     args = parser.parse_args()
 
-    with open(args.file) as data_file:
-        data = data_file.read()
+    delim = ',' if args.csv else ' '
 
-    data = data.split('\n')
+    data = np.genfromtxt(args.file, delimiter=delim)
 
-    sizes = [float(row.split()[0]) for row in data if row]
-    times = [float(row.split()[1]) for row in data if row]
-    print(sizes, times)
+    sizes = data[:, 0]
+    times = data[:, 1]
 
-    draw(sizes, times)
+    draw(sizes, times, args.log)
