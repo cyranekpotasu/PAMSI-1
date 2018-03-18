@@ -5,9 +5,12 @@ import matplotlib.pyplot as plt
 
 
 def draw(x, y):
+    plt.figure(1)
     plt.plot(x, y)
     plt.xlabel('Data size')
-    plt.ylabel('Execution time [$\\mu$s]')
+    plt.ylabel('Execution time [s]')
+    plt.xscale('log')
+    plt.yscale('log')
     plt.title('Time complexity plot')
     plt.grid(True)
     plt.show()
@@ -23,7 +26,8 @@ if __name__ == '__main__':
 
     data = data.split('\n')
 
-    sizes = [row.split()[0] for row in data if row]
-    times = [row.split()[1] for row in data if row]
+    sizes = [float(row.split()[0]) for row in data if row]
+    times = [float(row.split()[1]) for row in data if row]
+    print(sizes, times)
 
     draw(sizes, times)
