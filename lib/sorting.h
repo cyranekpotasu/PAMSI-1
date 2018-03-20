@@ -40,22 +40,23 @@ void heap_sort(int *container, int size) {
     }
 }
 
-void merge(int* container, int l, int m, int r)
+void merge(int* container, int left, int mid, int right)
 {
     int i, j, k;
-    int left_size = m - l + 1;
-    int right_size =  r - m;
+    int left_size = mid - left + 1;
+    int right_size =  right - mid;
 
-    int L[left_size], R[right_size];
+    auto L = new int[left_size];
+    auto R = new int[right_size];
 
     for (i = 0; i < left_size; i++)
-        L[i] = container[l + i];
+        L[i] = container[left + i];
     for (j = 0; j < right_size; j++)
-        R[j] = container[m + 1+ j];
+        R[j] = container[mid + 1+ j];
 
     i = 0;
     j = 0;
-    k = l;
+    k = left;
     while (i < left_size && j < right_size)
     {
         if (L[i] <= R[j])
@@ -84,6 +85,8 @@ void merge(int* container, int l, int m, int r)
         j++;
         k++;
     }
+    delete[] R;
+    delete[] L;
 }
 
 void merge_sort(int *container, int low, int high) {
