@@ -5,32 +5,32 @@
 #include <fstream>
 #include "lib/IRunnable.h"
 #include "lib/Stub.h"
-#include "lib/sorting.h"
+#include "lib/MergeSort.h"
 
 using namespace std;
 using namespace std::chrono;
 
 auto measure_time(IRunnable& prog) {
-    vector<int> times {};
+    vector<double> times {};
     for (unsigned i = 0; i < 50; i++) {
         auto t1 = high_resolution_clock::now();
         prog.run();
         auto t2 = high_resolution_clock::now();
-        auto elapsed = duration_cast<duration<int, micro>>(t2 - t1);
+        duration<double> elapsed = t2 - t1;
         times.push_back(elapsed.count());
     }
-    auto avg = accumulate(times.cbegin(), times.cend(), 0) / times.size();
+    auto avg = accumulate(times.cbegin(), times.cend(), 0.0) / times.size();
     return avg;
 }
 
 int main() {
-    ofstream data_file {"../data.txt"};
-    vector<unsigned> sizes {250, 500, 1000, 2500,
-                       5000, 7500, 10000, 15000};
-    Stub stub;
+    ofstream data_file {"../mergesort.csv"};
+    vector<unsigned> sizes {10, 100, 1000, 10000,
+                       100000, 1000000, 10000000, 100000000};
+    MergeSort mergeSort;
     for(const auto& size: sizes) {
-        stub.prepare(size);
-        data_file << size << " " << measure_time(stub) << endl;
+        mergeSort.prepare(size);
+        data_file << size << ", " << measure_time(mergeSort) << endl;
     }
     data_file.close();
     return 0;
