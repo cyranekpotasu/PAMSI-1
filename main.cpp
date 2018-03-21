@@ -6,6 +6,7 @@
 #include "lib/IRunnable.h"
 #include "lib/Stub.h"
 #include "lib/MergeSort.h"
+#include "lib/HeapSort.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -33,5 +34,13 @@ int main() {
         data_file << size << ", " << measure_time(mergeSort) << endl;
     }
     data_file.close();
+
+    ofstream heapsort_data {"../heapsort.csv"};
+    HeapSort heapSort;
+    for(const auto& size: sizes) {
+        heapSort.prepare(size);
+        heapsort_data << size << ", " << measure_time(heapSort) << endl;
+    }
+    heapsort_data.close();
     return 0;
 }
