@@ -6,8 +6,11 @@
 #define MEASURETIME_MERGESORT_H
 
 
+#include <random>
+#include <iostream>
 #include "IRunnable.h"
 #include "IPreparable.h"
+#include "../lib/sorting.h"
 
 class MergeSort: public IPreparable,
                  public IRunnable {

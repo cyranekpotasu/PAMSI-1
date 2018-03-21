@@ -2,10 +2,7 @@
 // Created by cyran on 19.03.18.
 //
 
-#include <random>
-#include <iostream>
 #include "../lib/MergeSort.h"
-#include "../lib/sorting.h"
 
 void MergeSort::prepare(unsigned _data_size) {
     delete[] data;

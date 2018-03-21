@@ -5,8 +5,10 @@
 #ifndef MEASURETIME_HEAPSORT_H
 #define MEASURETIME_HEAPSORT_H
 
+#include <random>
 #include "IRunnable.h"
 #include "IPreparable.h"
+#include "../lib/sorting.h"
 
 class HeapSort: public IPreparable,
                 public IRunnable {

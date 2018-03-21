@@ -2,9 +2,7 @@
 // Created by cyran on 21.03.18.
 //
 
-#include <random>
 #include "../lib/HeapSort.h"
-#include "../lib/sorting.h"
 
 HeapSort::~HeapSort() {
     delete[] data;
