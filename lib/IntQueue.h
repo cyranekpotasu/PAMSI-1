@@ -34,6 +34,8 @@ public:
 
     bool empty() noexcept;
 
+    int front();
+
     void display();
 };
 

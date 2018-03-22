@@ -14,9 +14,13 @@ IntQueue::~IntQueue() {
 }
 
 void IntQueue::enqueue(const int &elem) {
-    head = new Node(elem, head);
+    auto new_node = new Node(elem);
     if(tail == nullptr)
-        tail = head;
+        tail = head = new_node;
+    else {
+        tail->next = new_node;
+        tail = new_node;
+    }
     size++;
 }
 
@@ -47,4 +51,8 @@ void IntQueue::display() {
         iter = iter->next;
     }
     std::cout << std::endl;
+}
+
+int IntQueue::front() {
+    return head->value;
 }
