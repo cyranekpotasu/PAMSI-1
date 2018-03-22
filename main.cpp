@@ -13,7 +13,7 @@ using namespace std::chrono;
 
 auto measure_time(IRunnable& prog) {
     vector<double> times {};
-    for (unsigned i = 0; i < 50; i++) {
+    for (unsigned i = 0; i < 10; i++) {
         auto t1 = high_resolution_clock::now();
         prog.run();
         auto t2 = high_resolution_clock::now();
@@ -42,5 +42,4 @@ int main() {
         heapsort_data << size << ", " << measure_time(heapSort) << endl;
     }
     heapsort_data.close();
-    return 0;
 }
