@@ -37,47 +37,33 @@ void merge(int* container, int left, int mid, int right)
     int left_size = mid - left + 1;
     int right_size =  right - mid;
 
-    auto L = new int[left_size];
-    auto R = new int[right_size];
+    auto left_arr = new int[left_size];
+    auto right_arr = new int[right_size];
 
     for (i = 0; i < left_size; i++)
-        L[i] = container[left + i];
+        left_arr[i] = container[left + i];
     for (j = 0; j < right_size; j++)
-        R[j] = container[mid + 1+ j];
+        right_arr[j] = container[mid + 1 + j];
 
     i = 0;
     j = 0;
     k = left;
     while (i < left_size && j < right_size)
     {
-        if (L[i] <= R[j])
-        {
-            container[k] = L[i];
-            i++;
-        }
+        if (left_arr[i] <= right_arr[j])
+            container[k++] = left_arr[i++];
         else
-        {
-            container[k] = R[j];
-            j++;
-        }
-        k++;
+            container[k++] = right_arr[j++];
     }
 
     while (i < left_size)
-    {
-        container[k] = L[i];
-        i++;
-        k++;
-    }
+        container[k++] = left_arr[i++];
 
     while (j < right_size)
-    {
-        container[k] = R[j];
-        j++;
-        k++;
-    }
-    delete[] R;
-    delete[] L;
+        container[k++] = right_arr[j++];
+
+    delete[] left_arr;
+    delete[] right_arr;
 }
 
 void merge_sort(int *container, int low, int high) {
