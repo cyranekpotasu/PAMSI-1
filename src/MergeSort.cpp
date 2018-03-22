@@ -4,16 +4,19 @@
 
 #include "../lib/MergeSort.h"
 
-void MergeSort::prepare(unsigned _data_size) {
+void MergeSort::prepare(unsigned _data_size,
+                        const Case& exp_case) {
     delete[] data;
     data_size = _data_size;
     data = new int[data_size];
 
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(0, data_size * 2);
-    for(int i = 0; i < data_size; i++)
-        data[i] = dist(mt);
+    if(exp_case == Case::average) {
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist(0, data_size * 2);
+        for (int i = 0; i < data_size; i++)
+            data[i] = dist(mt);
+    }
 }
 
 void MergeSort::run() {

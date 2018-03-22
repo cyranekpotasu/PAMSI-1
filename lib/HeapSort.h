@@ -19,7 +19,11 @@ private:
 public:
     ~HeapSort();
 
-    void prepare(unsigned _data_size) override;
+    void prepare(unsigned _data_size,
+                 const Case& exp_case) override;
+    void prepare(unsigned _data_size) {
+        prepare(_data_size, Case::average);
+    }
     void run() override;
 };
 

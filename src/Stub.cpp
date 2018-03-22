@@ -8,7 +8,8 @@ Stub::~Stub() {
     delete[] data;
 }
 
-void Stub::prepare(unsigned int _data_size) {
+void Stub::prepare(unsigned int _data_size,
+                   const Case& exp_case) {
     delete[] data;
     data_size = _data_size;
     data = new int[data_size];

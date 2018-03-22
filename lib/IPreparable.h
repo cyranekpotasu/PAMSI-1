@@ -5,11 +5,12 @@
 #ifndef MEASURETIME_IPREPARABLE_H
 #define MEASURETIME_IPREPARABLE_H
 
-//enum class Case {pesimistic, average, optimistic};
+enum class Case {best, average, worst};
 
 class IPreparable {
 public:
-    virtual void prepare(unsigned int data_size) = 0;
+    virtual void prepare(unsigned int data_size,
+                         const Case& exp_case) = 0;
 };
 
 #endif //MEASURETIME_IPREPARABLE_H
