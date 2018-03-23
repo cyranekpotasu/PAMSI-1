@@ -24,8 +24,6 @@ public:
                  const Case& exp_case) override;
 
     void run() override;
-
-    void print_data();
 };
 
 #endif //MEASURETIME_QUICKSORT_H
